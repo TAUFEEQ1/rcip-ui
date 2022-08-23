@@ -13,7 +13,6 @@
     <video id="player"
       src="https://upload.wikimedia.org/wikipedia/commons/transcoded/1/18/Big_Buck_Bunny_Trailer_1080p.ogv/Big_Buck_Bunny_Trailer_1080p.ogv.360p.vp9.webm"
       
-      muted
       ></video>
     <div id="login-content" class="overlay">
       <h2 class="text-center">Please Login</h2>
@@ -23,7 +22,11 @@
       </div>
     </div>
     <div id="sign-content" class="overlay d-none">
-      <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h2>
+      <h2 class="text-center">Please Sign Here.</h2>
+      <div style="padding-left:10px; padding-right: 10px;">
+        <h2 class="text-center">Lorem ipsum dolor sit amet consectetur</h2>
+        <button class="outline-light mx-auto" onclick="play_second_video()">SIGN HERE</button>
+      </div>
     </div>
   </div>
 </body>
@@ -31,18 +34,25 @@
   const player = document.getElementById("player");
   const lcontent = document.getElementById("login-content");
   const scontent = document.getElementById("sign-content");
+  const mcontent = document.getElementById("main-content");
+
 
   player.addEventListener("ended",on_video_finish,false);
   function play_video(){
     player.play();
     lcontent.classList.add("d-none");
-    const mcontent = document.getElementById("main-content");
     mcontent.classList.remove("content");
   }
   function on_video_finish(){
     const mcontent = document.getElementById("main-content");
     mcontent.classList.add("content");
-    scontent.classList.remove("");
+    scontent.classList.remove("d-none");
+  }
+  function play_second_video(){
+    player.src = "./daylight.mp4";
+    scontent.classList.add("d-none");
+    mcontent.classList.remove("content");
+    player.play();
   }
 </script>
 <style>
