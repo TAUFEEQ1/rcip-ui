@@ -30,7 +30,7 @@
     </div>
 
     <div class="video-container h-screen w-screen hidden">
-      <video class="video-player" id="player" width="100%"  height="80%" src="./assets/AudioVideo.mp4">
+      <video class="video-player" id="player" width="100%"  height="100%" src="./assets/AudioVideo.mp4">
       </video>
     </div>
 
@@ -39,7 +39,6 @@
 <script>
   let state = { played: false };
   const player = document.getElementById("player");
-  const mplayer = document.getElementById( "mplayer" );
 
   function launch(){
     $( "div.launch-class" ).hide();
