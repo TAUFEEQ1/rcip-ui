@@ -6,12 +6,25 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="./assets/tailwindcss.js"></script>
+  <script src="./assets/jquery.js"></script>
   <title>RCIP NITA-U Commissioning Launch</title>
   <style>
+    @font-face {
+      font-family: "NunitoRegular";
+      src: url("./assets/VisbyRegular.otf");
+    }
+
+    @font-face {
+      font-family: "NunitoBold";
+      src: url("./assets/VisbyExtrabold.otf");
+    }
+
+    h2 {
+      font-family: "NunitoBold";
+    }
+
     .bg-photo {
-      /* background-image: url( "./bg.jpg" ); */
       background-image: linear-gradient( rgba( 0, 0, 0, 0.1 ), rgba( 0,0,0, 0.1 ) ), url( './images/RCIP_image4.png' );
       background-repeat: no-repeat;
       background-size: 100%;
@@ -22,9 +35,12 @@
 <body>
   
   <div class="w-screen h-screen overflow-hidden bg-gray-200 flex flex-col items-center justify-center bg-photo relative">
-    
-    <div class="w-3/12 bg-black flex items-center justify-center launch-class rounded-md py-5 px-5 hover:bg-yellow-500" id="login-content">
-      <button class="text-black w-full h-full text-white font-bold text-3xl px-2" onclick="launch()" id="the-btn">
+    <div class="flex items-center justify-center py-2 w-2/3 launch-class">
+     <h2 class="text-3xl font-bold text-center">REGIONAL ICT INFRASTRUCTURE AND <br><span class="text-[#8aae14]">e-GOVERNMENT SERVICES</span></h2>
+    </div>
+
+    <div class="w-3/12 my-6 bg-black flex items-center justify-center launch-class rounded-md py-5 px-5 hover:bg-yellow-500" id="login-content">
+      <button class="text-black w-full h-full text-white font-bold text-3xl px-2" id="the-btn">
           Commissioning of the RCIP Project
       </button>
     </div>
@@ -43,6 +59,7 @@
   function launch(){
     $( "div.launch-class" ).hide();
     $( "div.video-container" ).show();
+
     //play the video
     player.play();
     //when its done
@@ -50,9 +67,35 @@
       // mplayer.play()
     },false);
   }
+
+  function openFullscreen( myVideo ) {
+  console.log("hitting")
+  var elem = myVideo
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.mozRequestFullScreen) { /* Firefox */
+    elem.mozRequestFullScreen();
+  } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) { /* IE/Edge */
+    elem.msRequestFullscreen();
+  }
+}
+
+function toggleFullScreen() {
+    // Get your full screen element
+    const video= document.querySelector('#player');
+    const rfs = video.requestFullscreen || video.webkitRequestFullScreen || video.mozRequestFullScreen || video.msRequestFullscreen;
+    rfs.call(video);
+}
   
   $( document ).ready( function () {
-    
+      // var myVideo =  $("#player" );
+      $( "#the-btn" ).on( "click", function() {
+        launch();
+        toggleFullScreen();
+      } );
+      
   } );
 </script>
 <style>
